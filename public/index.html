@@ -1,18 +1,22 @@
-<!-- <!DOCTYPE html> -->
-<!-- <link href='https://api.mapbox.com/mapbox-gl-js/v[ENTER MAPBOX VERSION HERE]/mapbox-gl.css' rel='stylesheet' /> -->
-<!-- <html>
-  <head>
+<!DOCTYPE html> -->
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+<html>
+
+<head>
     <title>Trip Planner</title>
     <link rel="stylesheet" href="./style.css"></link>
     <script src="./bundle.js" defer></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="map"></div>
-  </body>
-</html> -->
+</body>
+
+</html>
 
 <!DOCTYPE html>
-<html>
+<!-- <html>
+
 <head>
     <meta charset='utf-8' />
     <title>Trip Planner</title>
@@ -22,66 +26,77 @@
     <link rel="stylesheet" href="./style.css"></link>
     <script src="./bundle.js" defer></script>
     <style>
-        body { margin:0; padding:0; }
-        #map { position: absolute; left: 2vh top: 2vh; bottom:20vh; }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%
+        }
     </style>
 </head>
+
 <body>
 
-<div id='map'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGFua2ltIiwiYSI6ImNqZ280aWw1eDJsbGUyd3FxeGhkZGE3cXgifQ.F_0IXkWvwkk5X8luow6DNQ';
-var map = new mapboxgl.Map({
-    style: 'mapbox://styles/mapbox/light-v9',
-    center: [-74.0066, 40.7135],
-    zoom: 15.5,
-    pitch: 45,
-    bearing: -17.6,
-    hash: true,
-    container: 'map'
-});
+    <div id='map'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGFua2ltIiwiYSI6ImNqZ280aWw1eDJsbGUyd3FxeGhkZGE3cXgifQ.F_0IXkWvwkk5X8luow6DNQ';
+        var map = new mapboxgl.Map({
+            style: 'mapbox://styles/mapbox/light-v9',
+            center: [-74.0066, 40.7135],
+            zoom: 15.5,
+            pitch: 45,
+            bearing: -17.6,
+            hash: true,
+            container: 'map'
+        });
 
-// The 'building' layer in the mapbox-streets vector source contains building-height
-// data from OpenStreetMap.
-map.on('load', function() {
-    // Insert the layer beneath any symbol layer.
-    var layers = map.getStyle().layers;
+        // The 'building' layer in the mapbox-streets vector source contains building-height
+        // data from OpenStreetMap.
+        map.on('load', function () {
+            // Insert the layer beneath any symbol layer.
+            var layers = map.getStyle().layers;
 
-    var labelLayerId;
-    for (var i = 0; i < layers.length; i++) {
-        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-            labelLayerId = layers[i].id;
-            break;
-        }
-    }
+            var labelLayerId;
+            for (var i = 0; i < layers.length; i++) {
+                if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                    labelLayerId = layers[i].id;
+                    break;
+                }
+            }
 
-    map.addLayer({
-        'id': '3d-buildings',
-        'source': 'composite',
-        'source-layer': 'building',
-        'filter': ['==', 'extrude', 'true'],
-        'type': 'fill-extrusion',
-        'minzoom': 15,
-        'paint': {
-            'fill-extrusion-color': '#aaa',
+            map.addLayer({
+                'id': '3d-buildings',
+                'source': 'composite',
+                'source-layer': 'building',
+                'filter': ['==', 'extrude', 'true'],
+                'type': 'fill-extrusion',
+                'minzoom': 15,
+                'paint': {
+                    'fill-extrusion-color': '#aaa',
 
-            // use an 'interpolate' expression to add a smooth transition effect to the
-            // buildings as the user zooms in
-            'fill-extrusion-height': [
-                "interpolate", ["linear"], ["zoom"],
-                15, 0,
-                15.05, ["get", "height"]
-            ],
-            'fill-extrusion-base': [
-                "interpolate", ["linear"], ["zoom"],
-                15, 0,
-                15.05, ["get", "min_height"]
-            ],
-            'fill-extrusion-opacity': .6
-        }
-    }, labelLayerId);
-});
-</script>
+                    // use an 'interpolate' expression to add a smooth transition effect to the
+                    // buildings as the user zooms in
+                    'fill-extrusion-height': [
+                        "interpolate", ["linear"], ["zoom"],
+                        15, 0,
+                        15.05, ["get", "height"]
+                    ],
+                    'fill-extrusion-base': [
+                        "interpolate", ["linear"], ["zoom"],
+                        15, 0,
+                        15.05, ["get", "min_height"]
+                    ],
+                    'fill-extrusion-opacity': .6
+                }
+            }, labelLayerId);
+        });
+    </script>
 
 </body>
-</html>
+
+</html> -->
